@@ -11,11 +11,17 @@ public class OfflineExercises {
 	// multChar("Hi-There") → "HHHiii---TTThhheeerrreee"
 
 	public String multChar(String input) {
+		String result = "";
 		
-		int s = 3;
-		for(int i = 0; i < input.length(); i++);
-		
-		return "i * s";
+		for(int i=0 ; i<input.length() ; i++) {
+			result += input.substring(i, i+1);
+			result += input.substring(i, i+1);
+			result += input.substring(i, i+1);
+
+		}
+		System.out.println(result);
+
+		return result;
 	}
 	
 	// Return the string (backwards) that is between the first and last appearance
@@ -45,8 +51,19 @@ public class OfflineExercises {
 	// evenlySpaced(4, 60, 9) → false
 
 	public boolean evenlySpaced(int a, int b, int c) {
-		if((int a - int b) = (int b - int c)) return true;
-		else 
+		if(b-a==c-b) {
+			return true;
+		}else if(b-c == a- b) {
+			return true;
+		}else if(a-b == c- a) {
+			return true;
+		}else if(a-c == b- a) {
+			return true;
+		}else if(c-b == a- c) {
+			return true;
+		}else if(c-a == b- c) {
+			return true;
+		}else
 		return false;
 	}
 
@@ -69,9 +86,12 @@ public class OfflineExercises {
 	// endsDev("devisnotcool") → false
 
 	public boolean endsDev(String input) {
-		if(input != "dev"); 
+		if(input.length() < 3) {
+			return false;
+		} else {
+		return input.substring(input.length()-3,input.length() ).toLowerCase().contentEquals("dev");
 		
-		return false;
+		}
 	}
 
 
@@ -84,7 +104,26 @@ public class OfflineExercises {
 	// superBlock("") → 0
 
 	public int superBlock(String input) {
-		return -1;
+		if (input.equals("")|| input == null) {
+			return 0;
+		}
+		int currentCount =1;
+		int maxCount = 1;
+		String lastLetter = "";
+		
+		for(int i=0; i<input.length(); i++) {
+			String letter = input.substring(i,i+1);
+			if(letter.equals(lastLetter)) {
+				currentCount++;
+			} else {
+				if (currentCount > maxCount) {
+					maxCount = currentCount;
+				}
+				currentCount = 1;
+			}
+			lastLetter = letter;
+		}
+		return maxCount;
 
 	}
 	
@@ -96,7 +135,21 @@ public class OfflineExercises {
 	//amISearch("I have been in Amsterdam") → 0
 
 	public int amISearch(String arg1) {
-		return 0;
+		int count = 0;
+		if(arg1.substring(0,3).equalsIgnoreCase("am ")) {
+			count++;
+		}
+		if(arg1.substring(arg1.length()-2, arg1.length()).equalsIgnoreCase(" am")) {
+			count++;
+		}
+		for (int  i=0; i < arg1.length()-3; i++) {
+			String check = arg1.substring(i,i+4);
+			if(check.equalsIgnoreCase(" am ")){
+				count++;	
+			}
+			
+		}
+		return count;
 		
 	}
 	
@@ -104,15 +157,28 @@ public class OfflineExercises {
 	// if this number is divisible by 3 return "fizz"
 	// if this number is divisible by 5 return "buzz"
 	// if this number is divisible by both 3  and 5return "fizzbuzz"
-	//
+	//if this number is divisable by 7 return "pop"
+	
 	//fizzBuzz(3) → "fizz"
 	//fizzBuzz(10) → "buzz"
 	//fizzBuzz(15) → "fizzbuzz"
 	
 	public String fizzBuzz(int arg1) {
-		return null;
+		String result = "";
 		
-	}
+		if(arg1 % 3 ==0) {
+			result = result + "fizz";
+			
+		}if (arg1 % 5 ==0) {
+			result = result + "buzz";
+			
+		}if (arg1 % 7 ==0) {
+			result = result = "boo";
+			
+		}
+		return result;
+}
+	
 	
 	//Given a string split the string into the individual numbers present
 	//then add each digit of each number to get a final value for each number
